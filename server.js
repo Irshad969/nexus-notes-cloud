@@ -15,7 +15,10 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(helmet());
+// Disable CSP to allow external CDNs (SweetAlert, FontAwesome, Google Fonts)
+app.use(helmet({
+  contentSecurityPolicy: false,
+}));
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
