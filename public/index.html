@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusNotes | Production Level</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fa-solid fa-cloud-bolt"></i> NexusNotes <span class="badge">PRO MAX</span>
+                </div>
+                <div class="header-actions">
+                    <button class="export-btn" onclick="exportAllNotes()">
+                        <i class="fa-solid fa-file-export"></i> Export All
+                    </button>
+                    <button class="vault-btn" onclick="toggleVault()">
+                        <i class="fa-solid fa-lock"></i> Hidden Vault
+                    </button>
+                </div>
+            </div>
+            <p id="mode-subtitle">Secure Cloud Architecture • DBaaS • PaaS</p>
+        </header>
+
+        <div class="main-layout">
+            <!-- CREATE NOTE PANEL -->
+            <div class="glass-panel add-note-section" id="form-panel">
+                <h2 id="form-title"><i class="fa-solid fa-pen-nib"></i> Create Note</h2>
+                <input type="hidden" id="edit-id">
+                
+                <div class="input-group">
+                    <input type="text" id="note-title" placeholder="Enter an epic title...">
+                </div>
+                
+                <div class="input-group">
+                    <select id="note-category">
+                        <option value="General">🏷️ General</option>
+                        <option value="Work">💼 Work</option>
+                        <option value="Personal">🏠 Personal</option>
+                        <option value="Important">⭐ Important</option>
+                        <option value="Ideas">💡 Ideas</option>
+                    </select>
+                </div>
+
+                <div class="input-group" style="position: relative;">
+                    <textarea id="note-content" placeholder="What's on your mind?" onkeyup="updateCharCount()"></textarea>
+                    <button id="mic-btn" onclick="toggleDictation()" title="Voice Typing" type="button">
+                        <i class="fa-solid fa-microphone"></i>
+                    </button>
+                    <div class="char-count" id="char-count">0 characters</div>
+                </div>
+                
+                <div class="form-actions">
+                    <button onclick="saveNote()" class="glow-btn" id="save-btn"><i class="fa-solid fa-paper-plane"></i> Save Note</button>
+                    <button onclick="cancelEdit()" class="cancel-btn" id="cancel-btn" style="display: none;"><i class="fa-solid fa-times"></i> Cancel</button>
+                </div>
+            </div>
+
+            <!-- NOTES LIST PANEL -->
+            <div class="notes-container">
+                <div class="search-bar-container">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search records by title, content or category..." onkeyup="filterNotes()">
+                </div>
+                
+                <div class="notes-grid" id="notes-list">
+                    <!-- Dynamic Notes Loaded Here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
